@@ -1,28 +1,37 @@
 package com.vimma.ciner.service;
 
 import com.vimma.ciner.dao.MovieDao;
+import com.vimma.ciner.models.Movie;
 import org.springframework.stereotype.Service;
+
+import java.lang.reflect.Array;
+import java.util.List;
 
 @Service
 public class MovieServiceImpl implements MovieService{
     MovieDao movieDao;
+
     @Override
-    public String getMovie() {
-        return null;
+    public void addMovie(Movie movie) {
+        movieDao.addMovie(movie);
     }
 
     @Override
-    public String addMovie() {
-        return null;
+    public List<Movie> getAllMovies() {
+        return movieDao.getAllMovies();
     }
 
     @Override
-    public String updateMovie() {
-        return null;
+    public Movie getMovie(int id) {
+        return movieDao.getMovie(id);
     }
 
     @Override
-    public String deleteMovie() {
-        return null;
+    public void updateMovie() {
+    }
+
+    @Override
+    public void deleteMovie(int id) {
+        movieDao.deleteMovie(id);
     }
 }
