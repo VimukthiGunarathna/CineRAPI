@@ -2,28 +2,34 @@ package com.vimma.ciner.service;
 
 import com.vimma.ciner.dao.MovieDao;
 import com.vimma.ciner.models.Movie;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Array;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class MovieServiceImpl implements MovieService{
+    @Autowired
     MovieDao movieDao;
+    Logger log = LoggerFactory.getLogger(MovieServiceImpl.class);
 
     @Override
     public void addMovie(Movie movie) {
-        movieDao.addMovie(movie);
+        movieDao.save(movie);
     }
 
     @Override
     public List<Movie> getAllMovies() {
-        return movieDao.getAllMovies();
+        return null;
     }
 
     @Override
     public Movie getMovie(int id) {
-        return movieDao.getMovie(id);
+        return null;
     }
 
     @Override
@@ -32,6 +38,6 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     public void deleteMovie(int id) {
-        movieDao.deleteMovie(id);
+        movieDao.deleteById(id);
     }
 }

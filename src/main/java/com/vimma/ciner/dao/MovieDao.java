@@ -1,12 +1,8 @@
 package com.vimma.ciner.dao;
 
 import com.vimma.ciner.models.Movie;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
-public interface MovieDao {
-    void addMovie(Movie movie);
-    Movie getMovie(int movie_id);
-    List<Movie>getAllMovies();
-    void deleteMovie(int movie_id);
+public interface MovieDao extends JpaRepository<Movie,Integer> {
 }
