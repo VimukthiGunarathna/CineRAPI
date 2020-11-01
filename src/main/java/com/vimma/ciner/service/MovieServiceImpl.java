@@ -2,7 +2,9 @@ package com.vimma.ciner.service;
 
 import com.vimma.ciner.controller.AddMovieRequest;
 import com.vimma.ciner.dao.MovieDao;
+import com.vimma.ciner.dao.TimeSlotDao;
 import com.vimma.ciner.models.Movie;
+import com.vimma.ciner.models.TimeSlot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ import java.util.List;
 public class MovieServiceImpl implements MovieService{
     @Autowired
     MovieDao movieDao;
+    @Autowired
+    TimeSlotDao timeSlotDao;
     Logger log = LoggerFactory.getLogger(MovieServiceImpl.class);
 
     @Override
@@ -25,7 +29,8 @@ public class MovieServiceImpl implements MovieService{
                 movierequest.getMovie_desc(),
                 movierequest.getAvailable_seats()
         ));
-        movieDao.save(movie);
+        movierequest.getTime_slots()
+                .forEach(timeSlot -> timeSlotDao.save(new TimeSlot(movie.getMovie_id(),timeSlot)));
     }
 
     @Override
