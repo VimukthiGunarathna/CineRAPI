@@ -10,14 +10,30 @@ public class Movie {
     private Integer movie_id;
     private String movie_name;
     private String movie_desc;
+    private Integer available_seats;
 
     public Movie() {
     }
 
-    public Movie(int movie_id, String movie_name, String movie_desc) {
+    public Movie(Integer movie_id, String movie_name, String movie_desc, Integer available_seats) {
         this.movie_id = movie_id;
-        this.movie_desc = movie_desc;
         this.movie_name = movie_name;
+        this.movie_desc = movie_desc;
+        this.available_seats = available_seats;
+    }
+
+    public Movie(String movie_name, String movie_desc, Integer available_seats) {
+        this.movie_name = movie_name;
+        this.movie_desc = movie_desc;
+        this.available_seats = available_seats;
+    }
+
+    public Integer getAvailable_seats() {
+        return available_seats;
+    }
+
+    public void setAvailable_seats(Integer available_seats) {
+        this.available_seats = available_seats;
     }
 
     public Integer getMovie_id() {

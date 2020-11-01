@@ -21,7 +21,7 @@ public class MovieController {
 
     // POST CALLS
     @PostMapping("/addMovie")
-    public ResponseEntity<Movie> addMovie(@RequestBody Movie movie){
+    public ResponseEntity<Movie> addMovie(@RequestBody AddMovieRequest movie){
         log.info("movie",movie.toString());
         service.addMovie(movie);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -45,15 +45,15 @@ public class MovieController {
 
     // PUT CALLS
     @PutMapping("/updateMovie/{id}")
-    public ResponseEntity<Movie> updateMovie(@RequestBody Movie movie, @PathVariable Integer id){
-        try {
-            Movie existMovie = service.getMovie(id);
-            service.addMovie(movie);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (NoSuchElementException e){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
+//    public ResponseEntity<Movie> updateMovie(@RequestBody Movie movie, @PathVariable Integer id){
+//        try {
+//            Movie existMovie = service.getMovie(id);
+//            service.addMovie(movie);
+//            return new ResponseEntity<>(HttpStatus.OK);
+//        } catch (NoSuchElementException e){
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
 
     // DELETE CALLS
     @DeleteMapping("/deleteMovie/{id}")

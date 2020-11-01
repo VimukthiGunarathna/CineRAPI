@@ -1,5 +1,6 @@
 package com.vimma.ciner.service;
 
+import com.vimma.ciner.controller.AddMovieRequest;
 import com.vimma.ciner.dao.MovieDao;
 import com.vimma.ciner.models.Movie;
 import org.slf4j.Logger;
@@ -18,7 +19,12 @@ public class MovieServiceImpl implements MovieService{
     Logger log = LoggerFactory.getLogger(MovieServiceImpl.class);
 
     @Override
-    public void addMovie(Movie movie) {
+    public void addMovie(AddMovieRequest movierequest) {
+        Movie movie = movieDao.save(new Movie(
+                movierequest.getMovie_name(),
+                movierequest.getMovie_desc(),
+                movierequest.getAvailable_seats()
+        ));
         movieDao.save(movie);
     }
 
