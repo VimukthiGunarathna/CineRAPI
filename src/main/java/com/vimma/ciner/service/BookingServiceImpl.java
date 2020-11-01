@@ -1,11 +1,7 @@
 package com.vimma.ciner.service;
 
-import com.vimma.ciner.controller.AddMovieRequest;
 import com.vimma.ciner.dao.BookingDao;
-import com.vimma.ciner.dao.MovieDao;
-import com.vimma.ciner.dao.TimeSlotDao;
 import com.vimma.ciner.models.Booking;
-import com.vimma.ciner.models.Movie;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
