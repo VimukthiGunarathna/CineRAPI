@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -35,20 +36,38 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     public List<Movie> getAllMovies() {
-        return null;
+        return movieDao.findAll();
     }
 
     @Override
-    public Movie getMovie(int id) {
-        return null;
+    public Movie getMovie(Integer id) {
+        return movieDao.findById(id).get();
     }
 
     @Override
-    public void updateMovie() {
+    public void updateMovie(AddMovieRequest updatedMovie, Movie existingMovie) {
+        existingMovie.setMovie_name(updatedMovie.getMovie_name());
+        existingMovie.setMovie_desc(updatedMovie.getMovie_desc());
+        existingMovie.setAvailable_seats(updatedMovie.getAvailable_seats());
+        updatedMovie.getTime_slots()
+                .forEach(timeSlot -> timeSlotDao.save(new TimeSlot(existingMovie.getMovie_id(),timeSlot)));
     }
 
     @Override
     public void deleteMovie(int id) {
         movieDao.deleteById(id);
+    }
+
+    @Override
+    public List<TimeSlot> getTimeSlots(Integer movie_id) {
+        ArrayList<TimeSlot> timeSlots = new ArrayList<TimeSlot>();
+
+        timeSlotDao.findAll().forEach(timeSlot -> {
+            if(timeSlot.getMovie_id() == movie_id) {
+                timeSlots.add(timeSlot);
+            }
+        });
+
+        return timeSlots;
     }
 }
