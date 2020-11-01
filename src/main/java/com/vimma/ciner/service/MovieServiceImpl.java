@@ -67,7 +67,6 @@ public class MovieServiceImpl implements MovieService{
                 timeSlots.add(timeSlot);
             }
         });
-
         return timeSlots;
     }
 }
