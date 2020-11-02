@@ -25,8 +25,12 @@ public class BookingController {
     // POST CALLS
     @PostMapping("/bookMovie")
     public ResponseEntity<Movie> addBooking(@RequestBody Booking booking){
-        service.addBooking(booking);
-        return new ResponseEntity<>(HttpStatus.OK);
+        try {
+            service.addBooking(booking);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
+        }
     }
 
     // GET CALLS
@@ -47,7 +51,12 @@ public class BookingController {
 
     // DELETE CALLS
     @DeleteMapping("/deleteBooking/{id}")
-    public void deleteBooking(@PathVariable("id") int id){
-        service.deleteBooking(id);
+    public ResponseEntity<Booking> deleteBooking(@PathVariable("id") int id){
+        try {
+            service.deleteBooking(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (NoSuchElementException e){
+            return new ResponseEntity<Booking>(HttpStatus.NOT_FOUND);
+        }
     }
 }

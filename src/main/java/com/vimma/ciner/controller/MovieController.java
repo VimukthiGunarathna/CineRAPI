@@ -24,9 +24,14 @@ public class MovieController {
     // POST CALLS
     @PostMapping("/addMovie")
     public ResponseEntity<Movie> addMovie(@RequestBody AddMovieRequest movie){
-        log.info("movie",movie.toString());
-        service.addMovie(movie);
-        return new ResponseEntity<>(HttpStatus.OK);
+        try {
+            log.info("movie",movie.toString());
+            service.addMovie(movie);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
+        }
+
     }
 
     // GET CALLS
