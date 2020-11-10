@@ -39,13 +39,13 @@ public class BookingController {
         return  service.getAllBookings();
     }
 
-    @GetMapping("/getBooking/{id}")
-    public ResponseEntity<Booking> getBooking(@PathVariable("id") int id ) {
+    @GetMapping("/getNumberOfBookings/{id}")
+    public ResponseEntity<TotalBookingsResponse> getNumberOfBookings(@PathVariable("id") int id ) {
         try {
-            Booking booking = service.getBookingById(id);
-            return new ResponseEntity<Booking>(booking, HttpStatus.OK);
+            TotalBookingsResponse totalBookings = service.getNumberOfBookings(id);
+            return new ResponseEntity<TotalBookingsResponse>(totalBookings, HttpStatus.OK);
         } catch (NoSuchElementException e){
-            return new ResponseEntity<Booking>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<TotalBookingsResponse>(HttpStatus.NOT_FOUND);
         }
     }
 

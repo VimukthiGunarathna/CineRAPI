@@ -14,21 +14,32 @@ public class Booking {
     private int movie_id;
     private int slot_id;
     private int customer_id;
+    private int tickets;
 
-    public Booking(int booking_id, int movie_id, int slot_id, int customer_id) {
+    public Booking(int booking_id, int movie_id, int slot_id, int customer_id, int tickets) {
         this.booking_id = booking_id;
         this.movie_id = movie_id;
         this.slot_id = slot_id;
         this.customer_id = customer_id;
+        this.tickets = tickets;
     }
 
-    public Booking(int movie_id, int slot_id, int customer_id) {
+    public Booking(int movie_id, int slot_id, int customer_id, int tickets) {
         this.movie_id = movie_id;
         this.slot_id = slot_id;
         this.customer_id = customer_id;
+        this.tickets = tickets;
     }
 
     public Booking() {
+    }
+
+    public int getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(int tickets) {
+        this.tickets = tickets;
     }
 
     public int getBooking_id() {

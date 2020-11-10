@@ -1,6 +1,7 @@
 package com.vimma.ciner.service;
 
 import com.vimma.ciner.controller.AddMovieRequest;
+import com.vimma.ciner.dao.BookingDao;
 import com.vimma.ciner.dao.MovieDao;
 import com.vimma.ciner.dao.TimeSlotDao;
 import com.vimma.ciner.models.Movie;
@@ -21,6 +22,8 @@ public class MovieServiceImpl implements MovieService{
     MovieDao movieDao;
     @Autowired
     TimeSlotDao timeSlotDao;
+    @Autowired
+    BookingDao bookingDao;
     Logger log = LoggerFactory.getLogger(MovieServiceImpl.class);
 
     @Override
@@ -56,6 +59,16 @@ public class MovieServiceImpl implements MovieService{
     @Override
     public void deleteMovie(int id) {
         movieDao.deleteById(id);
+        timeSlotDao.findAll().forEach(timeSlot -> {
+            if (timeSlot.getMovie_id() == id){
+                timeSlotDao.deleteById(timeSlot.getSlot_id());
+            }
+        });
+        bookingDao.findAll().forEach(booking -> {
+            if(booking.getMovie_id() == id){
+                bookingDao.deleteById(booking.getBooking_id());
+            }
+        });
     }
 
     @Override
