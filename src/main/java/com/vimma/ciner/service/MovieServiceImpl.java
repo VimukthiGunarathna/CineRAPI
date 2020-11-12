@@ -82,22 +82,4 @@ public class MovieServiceImpl implements MovieService{
         });
         return timeSlots;
     }
-
-//    @Override
-//    public List<Movie> getMoviesByName(String name) {
-//        movieDao.
-//                return null;
-//    }
-
-//    public User findByEmail(String email) {
-//        User user = null;
-//        Query query = entityManager.createQuery("SELECT u FROM User u WHERE u.email=:email");
-//        query.setParameter("email", email);
-//        try {
-//            user = (User) query.getSingleResult();
-//        } catch (Exception e) {
-//            // Handle exception
-//        }
-//        return user;
-//    }
 }
